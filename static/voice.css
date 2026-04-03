@@ -1,0 +1,335 @@
+
+body{
+    margin:0;
+    padding:0;
+    background:rgb(26, 25, 25);
+
+    font-family:var(--font);
+}
+/* status */
+.status{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    color:whitesmoke;
+    font-size:18px;
+    z-index:10;
+}
+/* response text */
+
+.voice-speaking .response-text{
+    opacity:1;
+}
+/* text input */
+.text-input{
+    position:absolute;
+    bottom:120px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255, 255, 255, 0.1);
+    border:2px solid #ffbf48;
+    border-radius:25px;
+    padding:12px 20px;
+    color:whitesmoke;
+    font-size:16px;
+    width:300px;
+    max-width:80%;
+    outline:none;
+    transition: all 0.3s ease;
+    z-index:20;
+}
+.text-input:focus{
+    border-color:#be4a1d;
+    background:rgba(255, 255, 255, 0.15);
+    box-shadow:0 0 10px rgba(255, 191, 72, 0.3);
+}
+.text-input::placeholder{
+    color:rgba(245, 245, 245, 0.7);
+}
+/* mic button */
+.mic-btn{
+    position:absolute;
+    bottom:50px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ffbf48;
+    border:0;
+    border-radius:50%;
+    width:80px;
+    height:80px;
+    font-size:30px;
+    cursor:pointer;
+    transition:.2s ease;
+    z-index:10;
+}
+.mic-btn:hover{
+    transform:translateX(-50%) scale(1.1);
+}
+.mic-btn.listening{
+    background:#be4a1d;
+    animation:pulse 1s infinite;
+}
+@keyframes pulse{
+    0%{transform:translateX(-50%) scale(1);}
+    50%{transform:translateX(-50%) scale(1.2);}
+    100%{transform:translateX(-50%) scale(1);}
+}
+/* close button */
+.close-btn{
+    position:fixed;
+    right:18px;
+    top:16px;
+    background:transparent;
+    border:0;
+    color:whitesmoke;
+    z-index: 100;
+    font-size:20px;
+    cursor:pointer;
+    transition:.2s ease;
+}
+.close-btn:hover{
+    color:rgb(255, 254, 255);
+    font-weight: bold;
+    transform:scale(1.2);
+}
+
+/* From Uiverse.io by andrew-manzyk */ 
+.loader-center {
+    position: absolute;
+    pointer-events: none;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3; /* above background */
+}
+.loader {
+  --color-one: #ffbf48;
+  --color-two: #be4a1d;
+  --color-three: #ffbf4780;
+  --color-four: #bf4a1d80;
+  --color-five: #ffbf4740;
+  --time-animation: 2s;
+  --size: 1; /* You can change the size */
+  position: relative;
+  border-radius: 50%;
+  transform: scale(var(--size));
+  box-shadow:
+    0 0 25px 0 var(--color-three),
+    0 20px 50px 0 var(--color-four);
+  animation: colorize calc(var(--time-animation) * 3) ease-in-out infinite;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border-top: solid 1px var(--color-one);
+  border-bottom: solid 1px var(--color-two);
+  background: linear-gradient(180deg, var(--color-five), var(--color-four));
+  box-shadow:
+    inset 0 10px 10px 0 var(--color-three),
+    inset 0 -10px 10px 0 var(--color-four);
+}
+
+.loader .box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(
+    180deg,
+    var(--color-one) 30%,
+    var(--color-two) 70%
+  );
+  mask: url(#clipping);
+  -webkit-mask: url(#clipping);
+}
+
+.loader svg {
+  position: absolute;
+}
+
+.loader svg #clipping {
+  filter: contrast(15);
+  animation: roundness calc(var(--time-animation) / 2) linear infinite;
+}
+
+.loader svg #clipping polygon {
+  filter: blur(7px);
+}
+
+.loader svg #clipping polygon:nth-child(1) {
+  transform-origin: 75% 25%;
+  transform: rotate(90deg);
+}
+
+.loader svg #clipping polygon:nth-child(2) {
+  transform-origin: 50% 50%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+}
+
+.loader svg #clipping polygon:nth-child(3) {
+  transform-origin: 50% 60%;
+  animation: rotation var(--time-animation) linear infinite;
+  animation-delay: calc(var(--time-animation) / -3);
+}
+
+.loader svg #clipping polygon:nth-child(4) {
+  transform-origin: 40% 40%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+}
+
+.loader svg #clipping polygon:nth-child(5) {
+  transform-origin: 40% 40%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+  animation-delay: calc(var(--time-animation) / -2);
+}
+
+.loader svg #clipping polygon:nth-child(6) {
+  transform-origin: 60% 40%;
+  animation: rotation var(--time-animation) linear infinite;
+}
+
+.loader svg #clipping polygon:nth-child(7) {
+  transform-origin: 60% 40%;
+  animation: rotation var(--time-animation) linear infinite;
+  animation-delay: calc(var(--time-animation) / -1.5);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes roundness {
+  0% {
+    filter: contrast(15);
+  }
+  20% {
+    filter: contrast(3);
+  }
+  40% {
+    filter: contrast(3);
+  }
+  60% {
+    filter: contrast(15);
+  }
+  100% {
+    filter: contrast(15);
+  }
+}
+
+@keyframes colorize {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    filter: hue-rotate(-30deg);
+  }
+  40% {
+    filter: hue-rotate(-60deg);
+  }
+  60% {
+    filter: hue-rotate(-90deg);
+  }
+  80% {
+    filter: hue-rotate(-45deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+/* ===============================
+   🎭 Visual container
+=============================== */
+.voice-visual{
+    position: relative;
+    height: 120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* ===============================
+   🔄 Shared animation base
+=============================== */
+.loader-center,
+.waveform{
+    position:absolute;
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+/* default states */
+.loader-center{
+    opacity:1;
+    transform:scale(1);
+}
+
+.waveform{
+    opacity:0;
+    transform:scale(.7);
+}
+
+/* ===============================
+   🧠 WHEN SPEAKING
+=============================== */
+.voice-speaking .loader-center{
+    opacity:0;
+    transform:scale(.6);
+}
+
+.voice-speaking .waveform{
+    opacity:1;
+    transform:scale(1);
+}
+
+/* FULL SCREEN RESPONSE */
+.ai-response {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    z-index: -5;
+    pointer-events: none;
+    margin-bottom: 20px;
+}
+
+#aiResponseText {
+    font-size: 18px;
+    font-weight: 400;
+    color: #bac0c1;
+    width: 1100px;
+    height: 800px;
+    max-width: 120vw;
+    max-height: 80vh;
+    line-height: 1.4;
+    text-shadow: 0 0 20px rgba(140, 151, 152, 0.425);
+    animation: fadeIn 0.4s ease;
+    overflow-y: auto;
+    word-wrap: break-word;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    white-space: pre-wrap;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+}
+
+/* smooth fade */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
+}

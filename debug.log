@@ -1,0 +1,85 @@
+User: Schedule a meeting titled 'Team Meeting' tomorrow at 10:00 AM
+Decision: {
+  "tool": "create_meeting",
+  "arguments": {
+    "title": "Team Meeting",
+    "date": "tomorrow",
+    "time": "10:00 AM",
+    "participants": []
+  }
+}
+
+User: Schedule a meeting titled 'Team Meeting' tomorrow at 10:00 AM
+Decision: {
+  "tool": "create_meeting",
+  "arguments": {
+    "title": "Team Meeting",
+    "date": "tomorrow",
+    "time": "10:00 AM",
+    "participants": ""
+  }
+}
+
+User: List my meetings
+Decision: {
+  "tool": "list_meetings",
+  "arguments": {}
+}
+
+User: cancel the test meeting for tomorrow at 10am
+Decision: {"tool": "list_meetings"} 
+{
+  "tool": "reschedule_meeting",
+  "arguments": {
+    "title": "Team Call",
+    "new_date": "tomorrow",
+    "new_time": "10am"
+  }
+}
+
+User: cancel all the meetings for tomorrow.
+Decision: {
+  "tool": "list_meetings",
+  "arguments": {}
+}
+
+{
+  "tool": "check_availability",
+  "arguments": {"date": "tomorrow", "time": ""}
+}
+
+{
+  "tool": "reschedule_meeting",
+  "arguments": {"title": "", "new_date": "tomorrow", "new_time": ""}
+}
+
+User: Send email to manipathak2205@gmail.com subject 'Meeting Reminder' body 'Don't forget our meeting tomorrow at 10 AM.
+Decision: {
+  "tool": "send_email",
+  "arguments": {
+    "to": "manipathak2205@gmail.com",
+    "subject": "Meeting Reminder",
+    "body": "Don't forget our meeting tomorrow at 10 AM."
+  }
+}
+
+User: create a task to finish report by tomorrow.
+Decision: {
+  "tool": "create_task",
+  "arguments": {"title": "Finish Report", "deadline": "tomorrow", "assigned_to": "you"}
+}
+
+User: show my task.
+Decision: I don't see any tasks assigned to you. To view your tasks, I need to list them. 
+
+{"tool": "list_tasks", "arguments": {}}
+
+User: mark task one as completed.
+Decision: {
+  "tool": "complete_task",
+  "arguments": {"task_id": "1"}
+}
+
+User: move task one.
+Decision: {"tool": "list_tasks"}
+

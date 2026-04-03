@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Voice Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='voice.css') }}">
+
+
+</head>
+
+<body>
+
+    <button class="close-btn" onclick="exitVoice()">✕</button>
+
+    <!-- Response Text Display -->
+    <div class="response-text" id="responseText"></div>
+
+    <!-- Text Input -->
+    <input type="text" class="text-input" id="textInput" placeholder="Type your message..." />
+
+    <!-- From Uiverse.io by andrew-manzyk -->
+     <div class="loader-center" id="loaderWrap">
+        <div class="loader">
+            <div class="box"></div>
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <defs>
+                    <mask id="clipping">
+                        <polygon points="0,0 100,0 100,100 0,100" fill="black"></polygon>
+                        <polygon points="25,25 75,25 50,75" fill="white"></polygon>
+                        <polygon points="50,25 75,75 25,75" fill="white"></polygon>
+                        <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+                        <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+                        <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+                        <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+                    </mask>
+                </defs>
+            </svg>
+        </div>
+    </div>
+    <div class="waveform" id="waveform">
+  <span></span><span></span><span></span>
+  <span></span><span></span><span></span>
+</div>
+
+<div id="aiResponseScreen" class="ai-response">
+    <div id="aiResponseText"></div>
+</div>
+    
+</body>
+<script src="{{ url_for('static', filename='voice.js') }}"></script>
+
+</html>
